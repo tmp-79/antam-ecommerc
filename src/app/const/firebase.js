@@ -93,6 +93,30 @@ export const getListWithCustomField = (collection, field, value = "") =>
       .catch((err) => reject(err));
   });
 
+export const getListWithCondition = (collection, condition) =>
+  new Promise((resolve, reject) => {
+    db.collection(collection)
+      .where(condition.compare.field, "==", condition.compare.value)
+      .orderBy(condition.sort.field, condition.sort.type)
+      .get()
+      .then((snapshot) => {
+        const result = [];
+
+        if (snapshot) {
+          snapshot.forEach((doc) => {
+            const uid = doc.id;
+            const data = doc.data();
+
+            data["id"] = uid;
+            result.push(data);
+          });
+
+          resolve(result);
+        }
+      })
+      .catch((err) => reject(err));
+  });
+
 export const getDocById = (collection, id) =>
   new Promise((resolve, reject) => {
     db.collection(collection)
@@ -134,8 +158,6 @@ export const uploadSingle = (file, cb) => {
         .child(file.name)
         .getDownloadURL()
         .then((url) => {
-          console.log(url);
-
           cb(url);
         })
         .catch((error) => cb(error));

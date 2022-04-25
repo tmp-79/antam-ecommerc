@@ -59,6 +59,7 @@ body::-webkit-scrollbar-thumb {
 
 // Mobile: width < 740px
 @media (max-width: 46.1875em) {
+
   // Background Page
   .background-page {
     background-image: unset;
@@ -72,20 +73,25 @@ body::-webkit-scrollbar-thumb {
 }
 
 // Tablet: width >= 740px and width < 1024px
-@media (min-width: 46.25em) and (max-width: 63.9375em) {
-
-}
+@media (min-width: 46.25em) and (max-width: 63.9375em) {}
 
 @layer compenents {
   .wrapper {
     max-width: 1244px;
     width: 100%;
     margin: 0 auto !important;
+
+    &.header-wr {
+      max-width: 1376px;
+
+    }
   }
+
   .animate-pulse {
     -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
+
   .animate-turnCircle {
     -webkit-animation: turnCircle 1s linear infinite alternate;
     animation: turnCircle 1s linear infinite alternate;
@@ -93,19 +99,22 @@ body::-webkit-scrollbar-thumb {
 }
 
 @layer keyframes {
-  @keyframes fadeIn{
-    0%{
+  @keyframes fadeIn {
+    0% {
       opacity: 0;
     }
-    100%{
+
+    100% {
       opacity: 1;
     }
   }
+
   @keyframes pulse {
     50% {
       opacity: 0.7;
     }
   }
+
   @keyframes turnCircle {
     100% {
       transform: rotate(30deg);

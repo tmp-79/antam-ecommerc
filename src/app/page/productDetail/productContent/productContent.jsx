@@ -43,9 +43,10 @@ import "./productContent.scss";
 // export default ProductContent;
 
 const productContent = (props) => {
-  console.log(props)
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [loading, setLoading] = useState(false);
   return (
     <section className="product-wrapper">
       <div className="wrapper">
@@ -62,16 +63,12 @@ const productContent = (props) => {
             modules={[FreeMode, Navigation, Thumbs]}
             className="mySwiper2 product-image__show"
           >
-            {props.product?.img?.map((item,idx) => {
+            {props.product?.img?.map((item, idx) => {
               return (
                 <SwiperSlide key={idx}>
-                  <img
-                    src={props.product.img[0]}
-                    alt=""
-                    className="product-img__show"
-                  />
+                  <img src={item} alt="" className="product-img__show" />
                 </SwiperSlide>
-              )
+              );
             })}
           </Swiper>
           <Swiper
@@ -87,29 +84,18 @@ const productContent = (props) => {
             {props.product?.img?.map((item, idx) => {
               return (
                 <SwiperSlide key={idx} className="product-sub__img-slide">
-                  <img
-                    src={item}
-                    alt=""
-                    className="product-sub__img"
-                  />
+                  <img src={item} alt="" className="product-sub__img" />
                 </SwiperSlide>
-              )
+              );
             })}
           </Swiper>
         </div>
         <div className="product-intro">
-          <h2 className="product-intro__title">
-            {props.product?.title}
-          </h2>
-          <p className="product-intro__desc">
-            {props.product?.content}
-          </p>
+          <h2 className="product-intro__title">{props.product?.title}</h2>
+          <p className="product-intro__desc">{props.product?.content}</p>
           <p className="product-intro__contact">
             Liên hệ: <span>0865.328.664</span>
           </p>
-          <a href="#from-order" className="btn-order">
-            Đặt hàng
-          </a>
         </div>
       </div>
     </section>

@@ -1,5 +1,4 @@
 .product {
-  padding-bottom: 72px;
 
   &-title {
     text-transform: capitalize;
@@ -25,19 +24,21 @@
     position: relative;
     transition: 0.1s linear;
     border: 1px solid transparent;
-    right: 0;
-    bottom: 0;
-
     &:hover {
-      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
       border-color: var(--primary-color);
-      right: 2px;
-      bottom: 1px;
     }
 
     &:hover .product-more {
       display: block;
       animation: fadeIn linear 0.2s;
+    }
+    &--hover {
+      box-shadow: none !important;
+      &:hover {
+        box-shadow: none !important;
+        border-color: transparent !important;
+      }
     }
   }
 
@@ -89,7 +90,8 @@
 
 // Responsive
 /* Mobile & tablet: width <1024px */
-@media only screen and (max-width: 63.9375em) {}
+@media only screen and (max-width: 63.9375em) {
+}
 
 /* Tablet: width >= 740px and width < 1024px */
 @media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {

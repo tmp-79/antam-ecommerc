@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ADD_PRODUCT, EDIT_PRODUCT } from "../admin/admin-page/constants";
-import Form from "./form";
+import FormComponent from "./form";
 import FormEdit from "./formEdit";
 import "./styles/modal.css";
 
@@ -11,7 +11,7 @@ class Modal extends Component {
     return (
       <>
         {type === ADD_PRODUCT && (
-          <Form
+          <FormComponent
             match={match}
             history={history}
             products={products}

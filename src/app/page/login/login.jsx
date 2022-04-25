@@ -58,7 +58,6 @@ function LoginPage() {
           onClick={(e) => {
             validator.HandleOnSubmit(e);
             validator.getFormValues = (formValues) => {
-              console.log(formValues)
             }
           }}
         >

@@ -74,7 +74,6 @@ export const getAllOrderAction = () => {
     getList("order")
       .then((response) => {
         if (response.length) {
-          console.log("response", response);
           dispatch({
             type: GET_ORDERS_SUCCESS,
             payload: response,

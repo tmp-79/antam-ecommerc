@@ -1,16 +1,21 @@
 import React, { Fragment, useEffect, useState } from "react";
-import "./Header.scss";
-import { NavLink, Link } from "react-router-dom";
-import { listItemNavbar } from "./data/list-item-navbar";
-import { useLocation } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { BsTelephoneFill } from "react-icons/bs";
 import { GrMenu, GrFormClose } from "react-icons/gr";
+
 import { BiChevronDown } from "react-icons/bi";
+import "./Header.scss";
 
 const Header = () => {
   const { pathname } = useLocation();
   const [showShadow, setShowShadow] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const { categoryList, isLoading } = useSelector((state) => state.category);
+
+  // useEffect(() => {
+  //   dispatch();
+  // }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,7 +59,7 @@ const Header = () => {
   return (
     <Fragment>
       <header className={`header ${showShadow ? "is-show" : ""}`}>
-        <div className="wrapper header-wrap">
+        <div className="wrapper header-wr header-wrap">
           <Link to="/">
             <span className="header-logo">
               <img src="/logo-chailo.png" alt="" />
@@ -66,17 +71,29 @@ const Header = () => {
               onClick={() => setShowMenu(false)}
               className="header-menu__close"
             ></GrFormClose>
-            {listItemNavbar.map((item) => (
+            <li className="header-nav__item" >
+              <NavLink className="header-title" to='/' onClick={() => setShowMenu(false)}
+                activeClassName={
+                  `/` === pathname ? "active" : ""
+                }>
+                Trang Chủ
+              </NavLink>
+            </li>
+            {categoryList?.map((item) => (
               <li className="header-nav__item" key={item.id}>
                 <NavLink
-                  to={item.link}
+                  onClick={() => setShowMenu(false)}
+                  to={`/loai-san-pham/${item.id}`}
                   className="header-title"
-                  activeClassName={item.link === pathname ? "active" : ""}
+                  activeClassName={
+                    `/loai-san-pham/${item.id}` === pathname ? "active" : ""
+                  }
                 >
-                  {item.itemName}{" "}
-                  {item.subItemName ? <BiChevronDown></BiChevronDown> : ""}
+                  {item.name}
+                  {/* {item.subItemName ? <BiChevronDown></BiChevronDown> : ""} */}
                 </NavLink>
-                {item.subItemName ? (
+
+                {/* {item.subItemName ? (
                   <ul className="header-sub__list">
                     <li className="header-sub__item">
                       <Link to={item.sublink} className="header-sub__link">
@@ -91,9 +108,18 @@ const Header = () => {
                   </ul>
                 ) : (
                   ""
-                )}
+                )} */}
               </li>
             ))}
+            <li className="header-nav__item" >
+              <NavLink className="header-title" to='/lien-he'
+               onClick={() => setShowMenu(false)}
+                activeClassName={
+                  `/lien-he` === pathname ? "active" : ""
+                }>
+                Liên hệ
+              </NavLink>
+            </li>
             <button className="btn header-phone">
               <a
                 href="tel:0865328664"

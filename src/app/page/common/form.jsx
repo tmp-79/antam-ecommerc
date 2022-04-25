@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
 import { storage } from "app/const/firebase";
 import { addProductAction } from "core/redux/actions/productActions";
 import { Toasts } from "./toasts/toasts";
+import { Form } from "react-bootstrap";
 
-function Form({ heading }) {
+function FormComponent({ heading }) {
+  let pecentsProgress;
   const [dataSubmit, setDataSubmit] = useState({
     title: "",
     content: "",
@@ -15,7 +17,8 @@ function Form({ heading }) {
   const [urls, setUrls] = useState([]);
   const history = useHistory();
   const dispatch = useDispatch();
-  let pecentsProgress;
+  const { categoryList } = useSelector((state) => state.category);
+
   const handleChange = (e) => {
     const { value, name } = e.target;
 
@@ -24,8 +27,6 @@ function Form({ heading }) {
       [name]: value,
     });
   };
-
-  console.log(urls.length);
 
   const handleChangeFile = (e) => {
     setUrls([]);
@@ -58,7 +59,7 @@ function Form({ heading }) {
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 
             if (snapshot.state === "running") {
-              console.log(`Đang tải: ${progress}%`);
+              // console.log(`Đang tải: ${progress}%`);
               pecentsProgress = progress;
             }
           },
@@ -124,7 +125,7 @@ function Form({ heading }) {
   return (
     <div className="modal-form">
       <div className="modal-body">
-        <h1 className='mat-title-form'>{heading}</h1>
+        <h1 className="mat-title-form">{heading}</h1>
 
         <form>
           <div className="form-group">
@@ -155,6 +156,22 @@ function Form({ heading }) {
             />
           </div>
 
+          <div className="form-group">
+            <label htmlFor="content">Loại sản phẩm</label>
+
+            <Form.Select
+              size="lg"
+              className="form-control"
+              name="categoryId"
+              onChange={handleChange}
+              defaultValue={categoryList[0]?.id}
+            >
+              {categoryList.map((item) => {
+                return <option value={item.id}>{item.name}</option>;
+              })}
+            </Form.Select>
+          </div>
+
           {errors.content && (
             <div className="alert alert-danger">{errors.content}</div>
           )}
@@ -163,7 +180,6 @@ function Form({ heading }) {
             <label className="choose-file" htmlFor="image">
               <i className="fa-solid fa-arrow-up-from-bracket"></i>
               Tải hình ảnh từ máy tính
-              {pecentsProgress}
             </label>
 
             <input
@@ -172,7 +188,7 @@ function Form({ heading }) {
               multiple
               onChange={handleChangeFile}
               hidden
-              accept="image/png, image/jpg, image/jpeg"
+              accept="image/png, image/jpg, image/jpeg,image/*"
             />
           </div>
           <span className="message-file">
@@ -188,19 +204,22 @@ function Form({ heading }) {
           {(urls.length === 0 ? true : false) && (
             <div className="content">
               {/* <i class="fa-solid fa-cloud-arrow-up"></i> */}
-              <span>
-                Chưa có file ảnh
-              </span>
+              <span>Chưa có file ảnh</span>
             </div>
           )}
           {urls.map((url) => {
             return (
-              <div style={{ padding: "1rem" }} className="col-3 image-uploaded" key={url}>
+              <div
+                style={{ padding: "1rem" }}
+                className="col-3 image-uploaded"
+                key={url}
+              >
                 <img src={url} alt={url} />
               </div>
             );
           })}
         </div>
+
         <div className="modal-button">
           <button onClick={cancelModal} className="modal-button-cancel">
             Hủy
@@ -221,4 +240,4 @@ function Form({ heading }) {
   );
 }
 
-export default Form;
+export default FormComponent;

@@ -6,7 +6,7 @@ export const phoneNumber = "0865328664";
 
 export const Contact = () => {
   return (
-    <div className="wrapper">
+    <div className="wrapper wrapper-contact">
       <div className="background-page contact">
         <h1 className="contact__title">Giới thiệu công ty</h1>
         <h3 className="contact__desc">

@@ -24,7 +24,7 @@ export const Footer = () => {
           <div className="footer-item">
             <h3 className="footer-title">Theo dõi chúng tôi trên</h3>
             <div className="footer-social">
-              <a href="/#">
+              <a href="https://www.facebook.com/chailoantam" target="_blank">
                 <svg
                   width="35"
                   height="35"
@@ -43,7 +43,7 @@ export const Footer = () => {
                   ></path>
                 </svg>
               </a>
-              <a href="/#">
+              <a href="https://chat.zalo.me/?phone=0865328664" target="_blank">
                 <svg
                   width="35"
                   height="35"
@@ -70,7 +70,7 @@ export const Footer = () => {
           </div>
           <div className="footer-item">
             <h3 className="footer-title">Chứng nhận bởi</h3>
-            <img src={imageBCT} alt="" className="footer-img" />
+            <img src={imageBCT} alt="Chứng nhận bộ công thương" className="footer-img" />
           </div>
         </div>
         <Copyright></Copyright>

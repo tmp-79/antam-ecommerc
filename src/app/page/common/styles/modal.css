@@ -126,7 +126,6 @@
   border-radius: 4px;
   color: #fff;
   font-size: 1.8rem;
-  width: 10rem;
 }
 
 .modal-form .modal-body .modal-button button:hover {
@@ -138,8 +137,7 @@
 }
 
 .modal-form .modal-body .modal-button .modal-button-save {
-  background-color: $btn-primary-color;
-  width: 15rem;
+  background-color: #3f51b5;
 }
 
 /* Responsive */

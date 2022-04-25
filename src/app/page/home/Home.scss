@@ -1,31 +1,37 @@
+.wrapper.content-wrapper {
+  padding-top: 90px;
+}
 
 //Responsive
 
 /* Mobile & tablet: width <1024px */
-@media only screen and (max-width: 63.9375em){
+@media only screen and (max-width: 63.9375em) {
 }
 
 /* Tablet: width >= 740px and width < 1024px */
 @media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
-  .content-wrapper{
+  .content-wrapper {
     padding: 26px;
+  }
+  .wrapper.content-wrapper {
+    padding-top: 110px;
   }
 }
 
 /* Mobie: width < 740px */
 @media only screen and (max-width: 46.1875em) {
-  .content-wrapper{
+  .content-wrapper {
     padding: 12px;
+  }
+  .wrapper.content-wrapper {
+    padding-top: 80px;
   }
 }
 
 /* PC Low */
-@media (min-width: 1024px) and (max-width: 1239px) { 
-
+@media (min-width: 1024px) and (max-width: 1239px) {
 }
 
 /* PC: width >= 1024px */
 @media only screen and (min-width: 64em) {
-
 }
-

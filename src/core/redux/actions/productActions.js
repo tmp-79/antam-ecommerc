@@ -73,11 +73,10 @@ export const deleteProductAction = (id) => {
 };
 
 export const getAllProductAction = () => {
-  return async (dispatch) => {
+  return async function (dispatch) {
     dispatch({
       type: GET_PRODUCTS_REQUESTING,
     });
-
     getList("product")
       .then((response) => {
         if (response.length) {
@@ -125,7 +124,6 @@ export const getDetailProductAction = (id) => {
     });
     getDocById("product", id)
       .then((response) => {
-        console.log("response,", response);
         dispatch({
           type: GET_PRODUCT_DETAIL_SUCCESS,
           payload: response,

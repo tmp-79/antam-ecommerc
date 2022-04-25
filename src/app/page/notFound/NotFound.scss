@@ -1,0 +1,18 @@
+.notfound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  img {
+    height: 600px;
+  }
+  &-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    span {
+      margin-left: 8px;
+    }
+  }
+}

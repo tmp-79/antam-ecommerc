@@ -7,9 +7,11 @@ import Table from "app/page/common/table";
 import "../styles/allProducts.scss";
 
 const AllProducts = ({ products, columns, products: data }) => {
+  console.log(products,data)
   return (
     <section className="product-section">
       <Table heading="Sản Phẩm" columns={columns} data={data} />
+
       <Switch>
         <Route
           path="/admin/tat-ca-san-pham/them-san-pham"

@@ -3,7 +3,7 @@
   &__title {
     margin-top: 20px;
     font-size: 2.2rem;
-    font-weight:500;
+    font-weight: 500;
     margin-bottom: 12px;
     line-height: 2.8rem;
     color: var(--primary-color);
@@ -111,37 +111,33 @@
     }
   }
 }
+.wrapper-contact {
+  padding-top: 90px;
+}
 
 // Mobile: width < 740px
 @media (max-width: 46.1875em) {
   .contact {
     &__desc {
       line-height: 1.6;
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
     &__content {
       display: block;
       margin-top: 26px;
       &-image {
-        width: 100%;  
+        width: 100%;
         height: 283px;
       }
       &-list {
         margin-top: 16px;
       }
+      &-line {
+        font-size: 1.4rem;
+      }
     }
     &__card {
-      margin-top: 24px;
-      margin-bottom: 4rem;
-      padding: 16px 0;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      height: 147px;
-      background-image: url("data:image/svg+xml,%3Csvg%20width%3D%22536%22%20height%3D%22176%22%20viewBox%3D%220%200%20536%20176%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cellipse%20cx%3D%22268%22%20cy%3D%2288%22%20rx%3D%22268%22%20ry%3D%2288%22%20fill%3D%22white%22%20fill-opacity%3D%220.3%22%2F%3E%0A%3C%2Fsvg%3E%0A");
-      background-repeat: no-repeat;
-      background-position: center bottom -96px;
+      display: none;
       &-item:last-child {
         display: flex;
       }
@@ -166,11 +162,20 @@
     &__info {
       font-size: 1.4rem;
       line-height: 1.6;
-      margin: 18px 0 40px;
+      margin: 18px 0 0;
     }
+  }
+  .background-page.contact {
+    padding: 12px;
   }
   .contact ~ .footer {
     background: #f3f6fc;
+  }
+  .footer {
+    margin-top: 0 !important;
+  }
+  .wrapper-contact {
+    padding-top: 65px;
   }
 }
 
@@ -205,7 +210,7 @@
           border-width: 6px;
         }
         &-text {
-          width: 200px;
+          width: 50%;
           font-size: 1.6rem;
           line-height: 2.2rem;
         }
@@ -216,6 +221,9 @@
       line-height: 1.6;
       margin: 18px 0 50px;
     }
+  }
+  .background-page.contact {
+    padding: 24px;
   }
   .contact ~ .footer {
     background: #f3f6fc;

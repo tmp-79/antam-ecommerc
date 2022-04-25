@@ -1,0 +1,58 @@
+#toast {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  z-index: 999;
+}
+
+.toast {
+  &-form {
+    background-color: #fff;
+    padding: 20px 16px;
+    border-radius: 8px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    display: flex;
+    gap: 0 1.6rem;
+    align-items: center;
+    border-left: 3px solid #06d6a0;
+    animation: slideShow 4s ease forwards;
+  }
+  &-icon__wrap {
+    width: 2.4rem;
+    height: 2.4rem;
+    background-color: #06d6a0;
+    border-radius: 100rem;
+    display: flex;
+  }
+  &-icon {
+    font-size: 2rem;
+    margin: auto;
+    color: #ffff;
+  }
+  &-content {
+    display: flex;
+    flex-direction: column;
+  }
+  &-title {
+    font-weight: 600;
+    font-size: 1.6rem;
+  }
+  &-text {
+    font-size: 1.4rem;
+  }
+}
+
+@keyframes slideShow {
+  0% {
+    transform: translateX(100%);
+  }
+  25% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}

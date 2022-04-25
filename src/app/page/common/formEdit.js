@@ -10,6 +10,7 @@ import {
 import { Toasts } from "./toasts/toasts";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import Loading from "app/components/loading";
+import { Form } from "react-bootstrap";
 
 function FormEdit({ heading }) {
   const { id } = useParams();
@@ -19,12 +20,14 @@ function FormEdit({ heading }) {
   const [dataSubmit, setDataSubmit] = useState({
     title: "",
     content: "",
+    categoryId: "",
   });
 
   const [errors, setErrors] = useState({});
   const [urls, setUrls] = useState([]);
   const history = useHistory();
   const dispatch = useDispatch();
+  const { categoryList } = useSelector((state) => state.category);
 
   useEffect(() => {
     dispatch(getDetailProductAction(id));
@@ -77,7 +80,7 @@ function FormEdit({ heading }) {
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 
             if (snapshot.state === "running") {
-              console.log(`Đang tải: ${progress}%`);
+              // console.log(`Đang tải: ${progress}%`);
             }
           },
           (error) => {
@@ -126,6 +129,7 @@ function FormEdit({ heading }) {
         payload = {
           ...dataSubmit,
           img: [...urls],
+          categoryId: dataSubmit.categoryId || categoryList[0].id,
         };
       }
 
@@ -144,10 +148,7 @@ function FormEdit({ heading }) {
     history.push("/admin/tat-ca-san-pham");
   };
 
-  useEffect(() => {
-    console.log("editProduct", editProduct);
-  }, [editProduct]);
-
+  console.log(urls)
   return (
     <div className="modal-form">
       <div className="modal-body">
@@ -193,8 +194,26 @@ function FormEdit({ heading }) {
               )}
 
               <div className="form-group">
-                <label htmlFor="image">Hình ảnh:</label>
+                <label htmlFor="content">Loại sản phẩm</label>
 
+                <Form.Select
+                  size="lg"
+                  className="form-control"
+                  name="categoryId"
+                  onChange={handleChange}
+                  defaultValue={editProduct.categoryId}
+                >
+                  {categoryList.map((item) => {
+                    return <option value={item.id}>{item.name}</option>;
+                  })}
+                </Form.Select>
+              </div>
+
+              <div className="form-group">
+                <label className="choose-file" htmlFor="image">
+                  <i className="fa-solid fa-arrow-up-from-bracket"></i>
+                  Tải hình ảnh từ máy tính
+                </label>
                 <input
                   id="image"
                   type="file"
@@ -208,17 +227,25 @@ function FormEdit({ heading }) {
                 <div className="alert alert-danger">{errors.files}</div>
               )}
             </form>
-
-            <div className="row">
+            <div className="row files-box">
+              {(urls.length === 0 ? true : false) && (
+                <div className="content">
+                  {/* <i class="fa-solid fa-cloud-arrow-up"></i> */}
+                  <span>Chưa có file ảnh</span>
+                </div>
+              )}
               {urls.map((url) => {
                 return (
-                  <div className="col-3 mt-3" key={url}>
+                  <div
+                    style={{ padding: "1rem" }}
+                    className="col-3 image-uploaded"
+                    key={url}
+                  >
                     <img src={url} alt={url} />
                   </div>
                 );
               })}
             </div>
-
             <div className="modal-button">
               <button onClick={cancelModal} className="modal-button-cancel">
                 Hủy

@@ -1,0 +1,12 @@
+@import '../../../../../../styles/variable';
+
+.form-add-category {
+    button {
+        color: #fff;
+        background-color: $btn-primary-color;
+        padding: 4px 10px;
+        border: 1px solid $btn-primary-color;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+}
